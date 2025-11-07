@@ -1,38 +1,45 @@
-import React from 'react';
-import { Upload, Wand2, ListChecks } from 'lucide-react';
+import { Upload, FileText, Sparkles } from "lucide-react";
 
 export default function HowItWorks() {
   const steps = [
     {
-      title: 'Add content',
-      desc: 'Paste notes or provide a YouTube link (transcript recommended for best results).',
-      Icon: Upload,
+      icon: Upload,
+      title: "Upload any doc",
+      desc: "PDF, Word, PowerPoint, or paste a YouTube link.",
     },
     {
-      title: 'Generate',
-      desc: 'We process your text and extract a clean summary, key points, and practice questions.',
-      Icon: Wand2,
+      icon: FileText,
+      title: "We extract content",
+      desc: "Text is safely extracted from your file or transcript.",
     },
     {
-      title: 'Review & retain',
-      desc: 'Skim the summary, scan the bullets, and test yourself with a quick quiz.',
-      Icon: ListChecks,
+      icon: Sparkles,
+      title: "Learn faster",
+      desc: "Get summaries, key points, ELI12, and Q&A practice.",
     },
   ];
 
   return (
-    <section className="mx-auto max-w-5xl px-6 py-12">
-      <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">How it works</h2>
-      <div className="grid gap-6 sm:grid-cols-3">
-        {steps.map(({ title, desc, Icon }) => (
-          <div key={title} className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-50 text-indigo-700">
-              <Icon className="h-5 w-5" />
+    <section className="mx-auto max-w-6xl px-6 py-16">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        How it works
+      </h2>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {steps.map((s, idx) => {
+          const Icon = s.icon;
+          return (
+            <div
+              key={idx}
+              className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 p-6 shadow-sm"
+            >
+              <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-violet-500/20 flex items-center justify-center mb-4">
+                <Icon className="w-5 h-5 text-violet-700 dark:text-violet-300" />
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white">{s.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{s.desc}</p>
             </div>
-            <h3 className="font-semibold text-gray-900">{title}</h3>
-            <p className="mt-2 text-sm text-gray-600">{desc}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
